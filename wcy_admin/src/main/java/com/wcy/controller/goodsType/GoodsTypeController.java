@@ -1,4 +1,4 @@
-package ${rootPath}.controller.${objectNameLower};
+package com.wcy.controller.goodsType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.wcy.utils.UUIDUtils;
-import ${rootPath}.model.${objectNameLower}.${objectName};
-import ${rootPath}.service.${objectNameLower}.${objectName}Service;
+import com.wcy.model.goodsType.GoodsType;
+import com.wcy.service.goodsType.GoodsTypeService;
 
 @RestController
-@RequestMapping("/${objectNameLower}")
-public class ${objectName}Controller{
+@RequestMapping("/goodsType")
+public class GoodsTypeController{
 
 	@Autowired
-	private ${objectName}Service ${objectNameLower}Service;
+	private GoodsTypeService goodsTypeService;
 
 	/**
 	 * 查询列表
 	 * 
 	 * @param request
-	 * @param ${objectNameLower}
+	 * @param goodsType
 	 * @return
 	 */
 	@RequestMapping("/list")
-	public ModelAndView list(HttpServletRequest request, ${objectName} ${objectNameLower}) {
-		ModelAndView mv = new ModelAndView("${objectNameLower}/list");
-		int count = ${objectNameLower}Service.getCount(${objectNameLower});
-		${objectNameLower}.setTotalCount(count);
-		List<${objectName}> ${objectNameLower}list = ${objectNameLower}Service.getList(${objectNameLower});
-		mv.addObject("varlist", ${objectNameLower}list);
-		mv.addObject("obj", ${objectNameLower});
+	public ModelAndView list(HttpServletRequest request, GoodsType goodsType) {
+		ModelAndView mv = new ModelAndView("goodsType/list");
+		int count = goodsTypeService.getCount(goodsType);
+		goodsType.setTotalCount(count);
+		List<GoodsType> goodsTypelist = goodsTypeService.getList(goodsType);
+		mv.addObject("varlist", goodsTypelist);
+		mv.addObject("obj", goodsType);
 		
 		return mv;
 	}
@@ -49,8 +49,8 @@ public class ${objectName}Controller{
 	@RequestMapping("/edit_pwd")
 	@ResponseBody
 	public ModelAndView edit_pwd(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("${objectNameLower}/edit_pwd");
-		mv.addObject("${objectNameLower}", new ${objectName}());
+		ModelAndView mv = new ModelAndView("goodsType/edit_pwd");
+		mv.addObject("goodsType", new GoodsType());
 		return mv;
 	}
 	/**
@@ -62,11 +62,11 @@ public class ${objectName}Controller{
 	@RequestMapping("/toedit")
 	@ResponseBody
 	public ModelAndView edit(HttpServletRequest request, String id,String otype) {
-		ModelAndView mv = new ModelAndView("${objectNameLower}/edit");
-		${objectName} ${objectNameLower} = null;
+		ModelAndView mv = new ModelAndView("goodsType/edit");
+		GoodsType goodsType = null;
 		if (id != null && !id.equals("")) {
-			${objectNameLower} = ${objectNameLower}Service.getById(id);
-			mv.addObject("${objectNameLower}", ${objectNameLower});
+			goodsType = goodsTypeService.getById(id);
+			mv.addObject("goodsType", goodsType);
 		}
 		mv.addObject("otype", otype);
 		return mv;
@@ -75,19 +75,19 @@ public class ${objectName}Controller{
 	/**
 	 * 保存
 	 * @param request
-	 * @param ${objectNameLower}
+	 * @param goodsType
 	 * @return
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public Map<String, Object> save(HttpServletRequest request, ${objectName} ${objectNameLower}) {
+	public Map<String, Object> save(HttpServletRequest request, GoodsType goodsType) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		String id = ${objectNameLower}.getId();
+		String id = goodsType.getId();
 		if (id != null && !id.equals("")) {
-			${objectNameLower}Service.update(${objectNameLower});
+			goodsTypeService.update(goodsType);
 		} else {
-			${objectNameLower}.setId(UUIDUtils.get32UUID());
-			${objectNameLower}Service.insert(${objectNameLower});
+			goodsType.setId(UUIDUtils.get32UUID());
+			goodsTypeService.insert(goodsType);
 		}
 		map.put("success", true);
 		return map;
@@ -98,7 +98,7 @@ public class ${objectName}Controller{
 	@ResponseBody
 	public Map<String, Object> delete(HttpServletRequest request, String ids) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		${objectNameLower}Service.delete(ids);
+		goodsTypeService.delete(ids);
 		map.put("success", true);
 		return map;
 	}
