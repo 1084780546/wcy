@@ -2,8 +2,11 @@ package com.wcy.dao.goodsType;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.wcy.model.goodsType.GoodsType;
 
+@Mapper
 public interface GoodsTypeDao {
 
 	//新增

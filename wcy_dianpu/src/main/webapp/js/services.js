@@ -5,9 +5,8 @@ angular.module('starter.service', [])
 		 return {
 		     showAlert:function(msg){
             	 var alertPopup = $ionicPopup.alert({
-				
 				       template: msg
-				     });
+				 });
         	}
 		  }
 

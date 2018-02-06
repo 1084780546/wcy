@@ -2,8 +2,11 @@ package com.wcy.dao.dianpu;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.wcy.model.dianpu.Dianpu;
 
+@Mapper
 public interface DianpuDao {
 
 	//新增

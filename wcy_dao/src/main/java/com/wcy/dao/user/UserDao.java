@@ -2,8 +2,11 @@ package com.wcy.dao.user;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.wcy.model.user.User;
 
+@Mapper
 public interface UserDao {
 
 	//新增

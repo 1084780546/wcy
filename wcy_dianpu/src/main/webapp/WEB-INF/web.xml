@@ -47,9 +47,9 @@
 		<param-name>log4jRefreshInterval</param-name>
 		<param-value>6000</param-value>
 	</context-param>
-	<listener>
+	<!-- <listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
+	</listener> -->
 	<!-- session的过期时间 -->
 	<session-config>
 		<session-timeout>30</session-timeout>
